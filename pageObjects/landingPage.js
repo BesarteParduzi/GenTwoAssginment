@@ -11,6 +11,7 @@ export class LandingPage {
     async navigateToPulsePage(){
         await this.page.locator('li[data-v-d14c0743] a[data-v-d14c0743]').getByText(this.Pulse).nth(0).click()
     }
+    
 
     //navigate to other tabs
     //

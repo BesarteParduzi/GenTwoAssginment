@@ -1,6 +1,7 @@
 import { expect} from '@playwright/test';
 export class PulsePage {
 
+    
     constructor(page) {
         this.page = page;
         this.All = "All";
