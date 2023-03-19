@@ -14,32 +14,45 @@ export class PulsePage {
         this.All = "All";
         this.Blog = "Blog";
         this.Testimonials = "Testimonials";
-        this.ProductSpotlights = "ProductSpotlights";
-        this.UseCases = "UseCases"
+        this.ProductSpotlights = "Product Spotlights";
+        this.UseCases = "Use Cases"
        }
-
-       async searchInTabs(tabName, text){
-        await expect(this.page.locator(this.allAndBlogSubtabs)).toBeVisible();
+       async navigateToSearchBar(tabName){
         await this.page.locator(this.searchTabs).getByText(tabName).click()
         await this.page.locator(this.searchIcon).click()
+       }
+       async typeInSearchBar(text){
         await this.page.fill(this.searchInput, text)
         await this.page.waitForLoadState('load') 
-        if(tabName=='All'){
-
-            tabName='Pulse'
-
-        }
-
-        console.log(tabName)
-        await expect(this.page.locator(this.searchResultsText).getByText(`results for "${text}"in ${tabName}`, { exact: false })).toBeVisible()
-
-        if(!expect(this.page.locator(this.searchResultsText).getByText('0', { exact: false })).toBeVisible()){
-            await this.page.locator(this.postcardResults).toBeVisible();
-        }
-        else{
-            await expect(this.page.locator(this.postcardResults)).not.toBeVisible();
-            await expect(this.page.locator(this.searchResultsText).getByText(`0 results for "${text}"in ${tabName}`, { exact: true })).toBeVisible()
-
-        }
        }
+
+       async validateInnerTabs(tabName){
+        if(tabName=='All' || tabName== 'Blog'){
+           await expect(this.page.locator(this.allAndBlogSubtabs)).toBeVisible();
+        }}
+
+        async validateResultMessage(){
+            await expect(this.page.locator(this.searchResultsText).getByText(`results for "${text}"in ${tabName}`, { exact: false })).toBeVisible()
+            if(!expect(this.page.locator(this.searchResultsText).getByText('0', { exact: false })).toBeVisible()){
+                await this.page.locator(this.postcardResults).toBeVisible();
+            }
+            else{
+                await expect(this.page.locator(this.postcardResults)).not.toBeVisible();
+                await expect(this.page.locator(this.searchResultsText).getByText(`0 results for "${text}"in ${tabName}`, { exact: true })).toBeVisible()
+            }
+                await expect(this.page.locator(this.postcardResults)).not.toBeVisible();
+                await expect(this.page.locator(this.searchResultsText).getByText(`0 results for "${text}"in ${tabName}`, { exact: true })).toBeVisible()
+            
+        }
+
+
+        
+    //    async searchInTabs(tabName, text){
+       
+    //     if(tabName=='All'){
+    //         tabName='Pulse'
+    //     }
+    //     console.log(tabName)
+        
+    //    }
 }

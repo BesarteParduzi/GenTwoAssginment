@@ -10,6 +10,9 @@ export class LandingPage {
         this.Company = "Company";
         this.Ecosystem = "Ecosystem";
       }
+    async acceptCookies(){
+        await this.page.locator('#accept').click()
+    }
     async navigateToPulsePage(){
         await this.page.locator(this.tabsMenu).getByText(this.Pulse).nth(0).click()
     }
