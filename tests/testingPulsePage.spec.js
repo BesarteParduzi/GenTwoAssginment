@@ -18,7 +18,7 @@ test.describe('two tests', () => {
         await landingPage.navigateToPulsePage()
         const pulsePage = new PulsePage(page)
         await expect(page).toHaveTitle(pulsePage.pulsePageTitle)
-        await pulsePage.searchInTabs('All', 'njn')
+        await pulsePage.searchInTabs(pulsePage.All, 'njn')
     
       });
       test('Search functinality in Pulse/Blog tab', async ({ page }) => {
@@ -30,7 +30,7 @@ test.describe('two tests', () => {
         await landingPage.navigateToPulsePage()
         const pulsePage = new PulsePage(page)
         await expect(page).toHaveTitle(pulsePage.pulsePageTitle)
-        await pulsePage.searchInTabs('Blog', 'jnlkl')
+        await pulsePage.searchInTabs(pulsePage.Blog, 'jnlkl')
     
       });
     

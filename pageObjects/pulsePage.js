@@ -13,11 +13,7 @@ export class PulsePage {
         this.page = page;
         this.All = "All";
         this.Blog = "Blog";
-        this.Testimonials = "Testimonials";
-        this.ProductSpotlights = "ProductSpotlights";
-        this.UseCases = "UseCases"
        }
-
        async searchInTabs(tabName, text){
         await expect(this.page.locator(this.allAndBlogSubtabs)).toBeVisible();
         await this.page.locator(this.searchTabs).getByText(tabName).click()
@@ -25,11 +21,8 @@ export class PulsePage {
         await this.page.fill(this.searchInput, text)
         await this.page.waitForLoadState('load') 
         if(tabName=='All'){
-
             tabName='Pulse'
-
         }
-
         console.log(tabName)
         await expect(this.page.locator(this.searchResultsText).getByText(`results for "${text}"in ${tabName}`, { exact: false })).toBeVisible()
 
@@ -39,7 +32,6 @@ export class PulsePage {
         else{
             await expect(this.page.locator(this.postcardResults)).not.toBeVisible();
             await expect(this.page.locator(this.searchResultsText).getByText(`0 results for "${text}"in ${tabName}`, { exact: true })).toBeVisible()
-
         }
        }
 }
